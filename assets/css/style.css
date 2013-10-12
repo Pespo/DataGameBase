@@ -1,0 +1,206 @@
+/***** Importation des fonts *****/
+@font-face { font-family: 'Wii'; src: url('../fonts/Wii_m.ttf');}
+
+* { margin:0px; padding:0px; list-style: none; }
+
+
+html {
+	background:
+		radial-gradient(hsl(0, 100%, 27%) 4%, hsl(0, 100%, 18%) 9%, hsla(0, 100%, 20%, 0) 9%) 0 0,
+		radial-gradient(hsl(0, 100%, 27%) 4%, hsl(0, 100%, 18%) 8%, hsla(0, 100%, 20%, 0) 10%) 50px 50px,
+		radial-gradient(hsla(0, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 50px 0,
+		radial-gradient(hsla(0, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 0 50px,
+		radial-gradient(hsla(0, 100%, 20%, 1) 35%, hsla(0, 100%, 20%, 0) 60%) 50px 0,
+		radial-gradient(hsla(0, 100%, 20%, 1) 35%, hsla(0, 100%, 20%, 0) 60%) 100px 50px,
+		radial-gradient(hsla(0, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 0 0,
+		radial-gradient(hsla(0, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 50px 50px,
+		linear-gradient(45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0,
+		linear-gradient(-45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0;
+	background-color: #a00; 
+	background-size: 100px 100px;
+	color: rgb(170, 170, 170);
+	font-family: 'Verdana';
+}
+
+body{
+	background-color: rgba(20,20,20,0.6);
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+/********
+ * MENU *
+ ********/
+ 
+div.menu{
+	position: fixed;
+	width: 100%;
+	background-color: black;
+	height: 40px;
+	text-align: center;
+	vertical-align: center;
+}
+
+div.menu ul {
+	margin: auto;
+	text-align: center;
+	list-style: none;
+}
+
+div.menu li {
+	display: inline-block;
+	margin: 5px;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+	padding: 2px 5px;
+}
+
+div.pre-list {
+	width: 100%;
+	height: 40px;
+}
+
+/*****************
+ * Liste de jeux *
+ *****************/
+ 
+#games_list {
+	width: 100%;
+	margin: auto;
+	padding:auto;
+	text-align: center;
+}
+
+	#games_list div.game {
+		border : 1px solid black;
+		width: 350px;
+		margin: 5px;
+		box-shadow: 3px 3px 5px 1px #000;
+		background-image:url(../images/illustration/fond_fiche_1.png);
+		border-radius: 20px 20px 5px 5px;
+		border:2px solid black;
+		display: inline-block;
+	}
+
+	#games_list div.title {
+		width:100%;
+		text-align:center;
+		background-color:white;
+		border-bottom: 2px solid black;
+		border-radius: 20px 20px 0px 0px;
+	}
+
+	#games_list div.title img{
+		max-width:100%;
+		max-height: 100px;
+		margin: auto;
+	}
+
+	#games_list div.info {
+		float : left;
+		width : 200px;
+		margin: 0px;
+	}
+
+	#games_list div.cover {
+		width:150px;
+		float: right;
+		text-align: center;
+		padding: 0px;
+	}
+
+	#games_list div.cover img{
+		vertical-align: center;
+		margin:5px auto;
+		border: 2px inset black;
+	}
+
+	#games_list ul {
+		margin:0px;
+		padding:0px;
+		list-style: none;
+		text-align: left;
+	}
+
+	#games_list li {
+		margin: 5px 0px 0px 5px;
+		padding:0px;
+		font-size: 12px;
+	}
+
+	#games_list span.info {
+		font-size: 14px;
+		vertical-align: top;
+		background-color: brown;
+		width: 95%;
+		display: block;
+		margin: 2px 0px 10px 0px;
+		padding: 2px 2px 5px 2px;
+		border: 1px inset black;
+	}
+
+/****************
+ * Fiche de jeu *
+ ****************/
+ 
+#game {
+	width: 100%;
+	margin: 10px auto;
+	text-align: center;
+}		
+	#game img.cover {		
+		display: inline-block;		
+		border: 2px solid black;
+		border-radius: 20px 0px 0px 20px;
+		height: 400px;
+	}
+		
+	#game div.info{
+		vertical-align: top;
+		text-align: left;
+		display: inline-block;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		border-right: 2px solid black;
+		border-radius: 0px 20px 20px 0px;
+		height: 400px;
+		min-width: 300px;
+	}
+	
+	#game div.title {
+		width:100%;
+		text-align:center;
+		background-color:white;
+		border-bottom: 2px solid black;
+		border-radius: 0px 20px 0px 0px;
+	}
+	
+	#game span.info {
+		font-size: 14px;
+		vertical-align: top;
+		background-color: brown;
+		width: 95%;
+		display: block;
+		margin: 2px 0px 10px 0px;
+		padding: 2px 2px 5px 2px;
+		border: 1px inset black;
+	}
+	
+	#game ul {
+		padding: 5px;
+		background-image:url(../images/illustration/fond_fiche_1.png);
+		border-radius: 0px 0px 20px 0px;
+		height: 285px;
+	}
+	
+footer {
+	position: fixed;
+	width: 100%;
+	background-color: black;
+	height: 20px;
+	text-align: center;
+	vertical-align: center;
+	bottom: 0px;
+}

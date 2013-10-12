@@ -1,0 +1,25 @@
+<NotepadPlus>
+    <Project name="DataGameBase">
+        <Folder name="assets">
+            <File name="assets\css\style.css" />
+        </Folder>
+        <Folder name="controllers">
+            <File name="application\controllers\game.php" />
+            <File name="application\controllers\game_manager.php" />
+            <File name="application\controllers\user_manager.php" />
+        </Folder>
+        <Folder name="models">
+            <File name="application\models\game_manager_model.php" />
+            <File name="application\models\game_model.php" />
+        </Folder>
+        <Folder name="views">
+            <File name="application\views\add_game.php" />
+            <File name="application\views\add_success.php" />
+            <File name="application\views\footer.php" />
+            <File name="application\views\game.php" />
+            <File name="application\views\games_list.php" />
+            <File name="application\views\head.php" />
+            <File name="application\views\menu.php" />
+        </Folder>
+    </Project>
+</NotepadPlus>
