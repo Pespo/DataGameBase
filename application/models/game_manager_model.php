@@ -102,8 +102,11 @@ class Game_manager_model extends CI_Model
 				$this->db->set('id_jeu', $game_id);
 				$this->db->insert('appartient');
 			}
-		} else 
+		} else { 
 			return 0;
+		}
+
+		return $game_id;
     }
 	
 	/**
