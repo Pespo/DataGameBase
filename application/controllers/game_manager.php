@@ -27,6 +27,23 @@ class Game_manager extends CI_Controller
 		$this->load->view('footer');
     }
 	
+	public function show_search_list($id_list) 
+	{
+		$data = array();
+        $data['games'] = $this->game_manager_model->get_list_search($id_list);
+
+		$this->load->view('head');
+		$this->load->view('menu');
+        $this->load->view('games_list', $data);
+		//$this->load->view('export_csv', $data);
+		$this->load->view('footer');
+    }
+	
+	public function search($search) 
+	{
+		$this->game_model_elastic->search_game($this->input->post('search'));
+    }
+	
 	public function add_game()
 	{		
 		$this->load->helper('form');
