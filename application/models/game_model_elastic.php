@@ -38,8 +38,24 @@ class Game_model_elastic extends CI_Model
 	
 		$params['index'] = 'jeux';
 		$params['type']  = 'jeux';
-		$params['body']['query']['match']['_all'] = "*".$search."*";
-		
+		$json = '{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+            "default_field": "_all",
+            "query": "*'.$search.'*"
+          }
+        }
+      ],
+      "must_not": [],
+      "should": []
+    }
+  }
+}';
+		//$params['body']['query']['match']['_all'] = "*".$search."*";
+		$params['body']=$json;
 		$results = $this->client->search($params);
 		
 		print_r($results);
