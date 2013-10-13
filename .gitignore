@@ -1,0 +1,5 @@
+assets/images/*
+user_guide/*
+system/*
+composer.*
+application/config/database.php
