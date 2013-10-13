@@ -171,7 +171,7 @@ class Game_manager_model extends CI_Model
 			->join('appartient', 'jeu.id_jeu = appartient.id_jeu', 'left')
 			->join('univers', 'appartient.id_univers = univers.id_univers', 'left')
 			->where_in($liste)
-			->group_by('id')
+			//->group_by('id')
 			->get()
 			->result();
 	}

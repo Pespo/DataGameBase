@@ -4,7 +4,7 @@ if (! defined('BASEPATH')) exit('No direct script access allowed');
 class Game_model_elastic extends CI_Model
 {
 	
-	var $connection 			= '192.168.157.130:9999';
+	var $connection 			= 'bebert77270.hd.free.fr:9999';
 	var $client;
 	
 	function __construct(){
@@ -39,9 +39,10 @@ class Game_model_elastic extends CI_Model
 		$params['index'] = 'jeux';
 		$params['type']  = 'jeux';
 		$params['body']['query']['match']['_all'] = $search;
-
-		$results = $client->search($params);
 		
+		$results = $this->client->search($params);
+		
+		print_r($results);
 	}
 
 }

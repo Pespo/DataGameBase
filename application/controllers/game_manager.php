@@ -17,6 +17,9 @@ class Game_manager extends CI_Controller
  
     public function home() 
 	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		
 		$data = array();
         $data['games'] = $this->game_manager_model->get_list();
 
@@ -27,15 +30,20 @@ class Game_manager extends CI_Controller
 		$this->load->view('footer');
     }
 	
-	public function show_search_list($id_list) 
+	public function show_search_list() 
 	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->model('game_model_elastic');
+		
 		$data = array();
-        $data['games'] = $this->game_manager_model->get_list_search($id_list);
-
+        $data['games'] = $this->game_model_elastic->search_game($this->input->post('search'));
+		
+		print_r($data);
+		
 		$this->load->view('head');
 		$this->load->view('menu');
         $this->load->view('games_list', $data);
-		//$this->load->view('export_csv', $data);
 		$this->load->view('footer');
     }
 	
