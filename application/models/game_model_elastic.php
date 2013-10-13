@@ -17,7 +17,7 @@ class Game_model_elastic extends CI_Model
 		
 		//Ouverture de la connection vers elastic
 		$params = array();
-		$params['hosts'] = array ($connection);
+		$params['hosts'] = array (this->$connection);
 		$client = new Elasticsearch\Client($params);
 
 		//Recuperation des parametres a indexes
