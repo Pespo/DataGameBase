@@ -6,6 +6,7 @@ class Game_manager extends CI_Controller
 	{
         parent::__construct();
 		$this->load->model('game_manager_model');
+		$this->load->model('game_model_elastic');
 		//$this->load->controller('game');
     }
 	
@@ -111,25 +112,8 @@ class Game_manager extends CI_Controller
 						$this->input->post('have_manual'));
 					
 					//$this->load->view('add_success');
-
-
-	$params = array();
-        $params['hosts'] = array ('192.168.157.130:9999');
-        $client = new Elasticsearch\Client($params);
-
-	$paramsindex = array();
-	$paramsindex['body']  = array('nom' => $this->input->post('title'), 'genre' => $this->input->post('genres'), 'editeur' => $this->input->post('publishers'), 'developpeur' => $this->input->post('developers'), 'univers' => $this->input->post('universes'), 'console' => $this->input->post('console'));
-
-	$paramsindex['index'] = 'jeux';
-	$paramsindex['type']  = 'jeux';
-	$paramsindex['id'] = $game_id;
-
-	$ret = $client->index($paramsindex);
-
-
-
-
-
+					
+					$this->game_model_elastic->($game_id);
 
 					redirect(current_url());
 				}
