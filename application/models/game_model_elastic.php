@@ -13,7 +13,7 @@ class Game_model_elastic extends CI_Model
 		//Ouverture de la connection vers elastic
 		$params = array();
 		$params['hosts'] = array ($connection);
-		$client = new Elasticsearch\Client($params);
+		$this->client = new Elasticsearch\Client($params);
 	}
 	
 	public function add_game($game_id){
@@ -28,7 +28,7 @@ class Game_model_elastic extends CI_Model
 		$paramsindex['type']  = 'jeux';
 		$paramsindex['id'] = $jeu->id;
 
-		$ret = $client->index($paramsindex);
+		$ret = $this->client->index($paramsindex);
 		
 	}
 
