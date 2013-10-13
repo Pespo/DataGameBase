@@ -102,8 +102,11 @@ class Game_manager_model extends CI_Model
 				$this->db->set('id_jeu', $game_id);
 				$this->db->insert('appartient');
 			}
-		} else 
+		} else { 
 			return 0;
+		}
+
+		return $game_id;
     }
 	
 	/**
@@ -135,6 +138,39 @@ class Game_manager_model extends CI_Model
 			->join('appartient', 'jeu.id_jeu = appartient.id_jeu', 'left')
 			->join('univers', 'appartient.id_univers = univers.id_univers', 'left')
 			->limit($nb, $debut)
+			->group_by('id')
+			->get()
+			->result();
+	}
+	
+		/**
+	 *  Retourne une liste de $nb dernières news.
+	 * 
+	 *  @param array $liste		Liste d'id de jeu
+	 *  @return objet       	La liste de jeu in liste
+	 */
+	public function get_list_search($liste)
+	{
+		return $this->db
+			->select("	jeu.id_jeu AS id,
+						jeu.nom AS title,
+						jeu.id_personne AS personne,
+						GROUP_CONCAT(DISTINCT genre.nom SEPARATOR ' / ') AS genres,
+						GROUP_CONCAT(DISTINCT editeur.nom SEPARATOR ' / ') AS publishers,
+						GROUP_CONCAT(DISTINCT developpeur.nom SEPARATOR ' / ') AS developers,
+						GROUP_CONCAT(DISTINCT univers.nom SEPARATOR ' / ') AS universes,
+						console.nom AS console")
+			->from($this->table)
+			->join('console', 'jeu.id_console = console.id_console', 'left')
+			->join('est', 'jeu.id_jeu = est.id_jeu', 'left')
+			->join('genre', 'est.id_genre = genre.id_genre', 'left')
+			->join('edite', 'jeu.id_jeu = edite.id_jeu', 'left')
+			->join('editeur', 'edite.id_editeur = editeur.id_editeur', 'left')
+			->join('developpe', 'jeu.id_jeu = developpe.id_jeu', 'left')
+			->join('developpeur', 'developpe.id_developpeur = developpeur.id_developpeur', 'left')
+			->join('appartient', 'jeu.id_jeu = appartient.id_jeu', 'left')
+			->join('univers', 'appartient.id_univers = univers.id_univers', 'left')
+			->where_in($liste)
 			->group_by('id')
 			->get()
 			->result();
