@@ -170,8 +170,8 @@ class Game_manager_model extends CI_Model
 			->join('developpeur', 'developpe.id_developpeur = developpeur.id_developpeur', 'left')
 			->join('appartient', 'jeu.id_jeu = appartient.id_jeu', 'left')
 			->join('univers', 'appartient.id_univers = univers.id_univers', 'left')
-			->where_in($liste)
-			//->group_by('id')
+			->where_in('jeu.id_jeu',$liste)
+			->group_by('id')
 			->get()
 			->result();
 	}

@@ -37,19 +37,17 @@ class Game_manager extends CI_Controller
 		$this->load->model('game_model_elastic');
 		
 		$liste_tmp = array();
-        $liste_tmp['games'] = $this->game_model_elastic->search_game($this->input->post('search'));
-		//print_r($data);
-		
+	        $liste_tmp = $this->game_model_elastic->search_game($this->input->post('search'));
+				
 		$liste = array();
 		
 		foreach ($liste_tmp['hits']['hits'] as &$value) {
-			//$liste = $results['hits']['hits'][i]['_id'];
 			array_push($liste, $value['_id']);
 		}
 		
 		$data = array();
 		
-		$data = $this->game_manager_model->get_list_search($liste);
+		$data['games'] = $this->game_manager_model->get_list_search($liste);
 		
 		$this->load->view('head');
 		$this->load->view('menu');
