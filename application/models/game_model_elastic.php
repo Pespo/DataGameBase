@@ -5,20 +5,20 @@ class Game_model_elastic extends CI_Model
 {
 	
 	var $connection 			= '192.168.157.130:9999';
-	var $client;
 	
 	function __construct(){
         parent::__construct();
 		$this->load->model('game_model');
-		//Ouverture de la connection vers elastic
-		$params = array();
-		$params['hosts'] = array ($connection);
-		$this->client = new Elasticsearch\Client($params);
 	}
 	
 	public function add_game($game_id){
 	
 		$jeu = $this->game_model->get_game($game_id);
+		
+		//Ouverture de la connection vers elastic
+		$params = array();
+		$params['hosts'] = array ($connection);
+		$client = new Elasticsearch\Client($params);
 
 		//Recuperation des parametres a indexes
 		$paramsindex = array();
@@ -28,7 +28,7 @@ class Game_model_elastic extends CI_Model
 		$paramsindex['type']  = 'jeux';
 		$paramsindex['id'] = $jeu->id;
 
-		$ret = $this->client->index($paramsindex);
+		$ret = $client->index($paramsindex);
 		
 	}
 
