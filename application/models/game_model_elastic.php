@@ -16,9 +16,9 @@ class Game_model_elastic extends CI_Model
 		$client = new Elasticsearch\Client($params);
 	}
 	
-	public function add_game($id_game){
+	public function add_game($game_id){
 	
-		$jeu = $this->game_model->get_game($id_game);
+		$jeu = $this->game_model->get_game($game_id);
 
 		//Recuperation des parametres a indexes
 		$paramsindex = array();

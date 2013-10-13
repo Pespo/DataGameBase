@@ -113,7 +113,7 @@ class Game_manager extends CI_Controller
 					
 					//$this->load->view('add_success');
 					
-					$this->game_model_elastic->($game_id);
+					$this->game_model_elastic->add_game($game_id);
 
 					redirect(current_url());
 				}
