@@ -38,7 +38,7 @@ class Game_model_elastic extends CI_Model
 	
 		$params['index'] = 'jeux';
 		$params['type']  = 'jeux';
-		$params['body']['query']['match']['_all'] = $search;
+		$params['body']['query']['match']['_all'] = "*".$search."*";
 		
 		$results = $this->client->search($params);
 		
