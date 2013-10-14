@@ -48,7 +48,7 @@ class Game_manager extends CI_Controller
 		
 		$data = array();
 		
-		$data['games'] = $this->game_manager_model->get_list_search($liste);
+		//$data['games'] = $this->game_manager_model->get_list_search($liste);
 		
 		$this->load->view('head');
 		$this->load->view('menu');
