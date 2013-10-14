@@ -1,5 +1,6 @@
 <?php
-require 'vendor/autoload.php'; 
+require 'vendor/autoload.php';
+require 'models/ElasticSearch.php';
 class Game_manager extends CI_Controller 
 {	
 	public function __construct() 
@@ -37,8 +38,25 @@ class Game_manager extends CI_Controller
 		$this->load->model('game_model_elastic');
 		
 		$liste_tmp = array();
-	        $liste_tmp = $this->game_model_elastic->search_game($this->input->post('search'));
-				
+	    //$liste_tmp = $this->game_model_elastic->search_game($this->input->post('search'));
+		$json = '{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+            "default_field": "_all",
+            "query": "*'.$this->input->post('search').'*"
+          }
+        }
+      ],
+      "must_not": [],
+      "should": []
+    }
+  }
+}';
+		$e = new ElasticSearch;
+		$liste_tmp = $e->query($json);
 		$liste = array();
 		
 		foreach ($liste_tmp['hits']['hits'] as &$value) {

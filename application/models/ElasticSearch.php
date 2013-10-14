@@ -2,7 +2,7 @@
  
 // http://www.elasticsearch.com/docs/elasticsearch/rest_api/
  
-class ElasticSearch extends CI_Model {
+class ElasticSearch {
 public $index;
 public $type;
 public $server:
