@@ -41,8 +41,8 @@ class Game_model_elastic extends CI_Model
 	
 	public function search_game($search){
 	
-		$params['index'] = 'jeux';
-		$params['type']  = 'jeux';
+		//$params['index'] = 'jeux';
+		//$params['type']  = 'jeux';
 		$query = new \Elastica\Query\Builder('{"query": {"bool": {"must": [{"query_string": {"default_field": "_all","query": "*'.$search.'*"}}]}}}');
 		// Create a raw query since the query above can't be passed directly to the search method used below
 		$query = new Elastica\Query($query->toArray()); 
@@ -50,12 +50,12 @@ class Game_model_elastic extends CI_Model
 		$searchEl = new Elastica\Search($this->elasticaClient); 
 		// Configure and execute the search
 		$resultSet = $searchEl->addIndex('jeux')->addType('jeux')->search($query);
-		$json = '{"query": {"bool": {"must": [{"query_string": {"default_field": "_all","query": "*'.$search.'*"}}]}}}';
+		//$json = '{"query": {"bool": {"must": [{"query_string": {"default_field": "_all","query": "*'.$search.'*"}}]}}}';
 		//$params['body']['query']['match']['_all'] = "*".$search."*";
-		$params['body']=$json;
-		$results = $this->client->search($params);
+		//$params['body']=$json;
+		//$results = $this->client->search($params);
 		
-		print_r($resultSet);
+		//print_r($resultSet);
 		
 		return $resultSet;
 	}

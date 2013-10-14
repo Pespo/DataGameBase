@@ -41,7 +41,8 @@ class Game_manager extends CI_Controller
 				
 		$liste = array();
 		
-		foreach ($liste_tmp['hits']['hits'] as &$value) {
+		foreach ($liste_tmp['_hit'] as &$value) {
+			print_r($value);
 			array_push($liste, $value['_id']);
 		}
 		
