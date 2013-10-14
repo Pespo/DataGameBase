@@ -42,13 +42,13 @@ class Game_manager extends CI_Controller
 		$liste = array();
 		
 		foreach ($liste_tmp as $value) {
-			print_r($value);
-			array_push($liste, $value['_id']);
+			//print_r($value->getId());
+			array_push($liste, $value->getId());
 		}
 		
 		$data = array();
 		
-		//$data['games'] = $this->game_manager_model->get_list_search($liste);
+		$data['games'] = $this->game_manager_model->get_list_search($liste);
 		
 		$this->load->view('head');
 		$this->load->view('menu');
