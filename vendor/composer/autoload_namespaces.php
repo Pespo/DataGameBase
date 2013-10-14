@@ -15,4 +15,6 @@ return array(
     'Elasticsearch\\Tests' => array($vendorDir . '/elasticsearch/elasticsearch/tests'),
     'Elasticsearch\\Benchmarks' => array($vendorDir . '/elasticsearch/elasticsearch/benchmarks'),
     'Elasticsearch' => array($vendorDir . '/elasticsearch/elasticsearch/src'),
+    'Elastica\\Test' => array($vendorDir . '/ruflin/elastica/test/lib'),
+    'Elastica' => array($vendorDir . '/ruflin/elastica/lib'),
 );
