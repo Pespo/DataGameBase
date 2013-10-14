@@ -1,5 +1,6 @@
 {
     "require": {
         "elasticsearch/elasticsearch": "~0.4"
+		"ruflin/Elastica": "dev-master"
     }
 }
