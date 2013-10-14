@@ -4,8 +4,10 @@ if (! defined('BASEPATH')) exit('No direct script access allowed');
 class Game_model_elastic extends CI_Model
 {
 	
-	var $connection 			= 'bebert77270.hd.free.fr:9999';
+	var $connection 			= '192.168.157.130:9999';
 	var $client;
+	var $elasticaClient;
+
 	
 	function __construct(){
         parent::__construct();
@@ -14,7 +16,10 @@ class Game_model_elastic extends CI_Model
 		//Ouverture de la connection vers elastic
 		$params = array();
 		$params['hosts'] = array ($this->connection);
+		
 		$this->client = new Elasticsearch\Client($params);
+		
+		$this->elasticaClient = new \Elastica\Client(array('host' => '192.168.157.130','port' => 9999));
 		
 	}
 	
@@ -38,27 +43,21 @@ class Game_model_elastic extends CI_Model
 	
 		$params['index'] = 'jeux';
 		$params['type']  = 'jeux';
-		$json = '{
-  "query": {
-    "bool": {
-      "must": [
-        {
-          "query_string": {
-            "default_field": "_all",
-            "query": "*'.$search.'*"
-          }
-        }
-      ],
-      "must_not": [],
-      "should": []
-    }
-  }
-}';
+		$query = new Elastica_Query_Builder('{"query": {"bool": {"must": [{"query_string": {"default_field": "_all","query": "*'.$search.'*"}}]}}}');
+		// Create a raw query since the query above can't be passed directly to the search method used below
+		$query = new Elastica_Query($query->toArray()); 
+		// Create the search object and inject the client
+		$searchEl = new Elastica_Search($elasticaClient); 
+		// Configure and execute the search
+		$resultSet = $searchEl->addIndex('jeux')->addType('jeux')->search($query);
+		$json = '{"query": {"bool": {"must": [{"query_string": {"default_field": "_all","query": "*'.$search.'*"}}]}}}';
 		//$params['body']['query']['match']['_all'] = "*".$search."*";
 		$params['body']=$json;
 		$results = $this->client->search($params);
 		
-		print_r($results);
+		print_r($resultSet);
+		
+		return $resultSet;
 	}
 
 }
