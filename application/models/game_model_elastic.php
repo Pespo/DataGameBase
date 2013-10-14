@@ -5,12 +5,13 @@ require 'ElasticSearch.php';
 class Game_model_elastic extends CI_Model
 {
 	
-	var $connection 			= '192.168.157.130:9999';
+	var $connection 			= 'bebert77270.hd.free.fr:9999';
 	var $client;
 	
 	function __construct(){
         parent::__construct();
 		$this->load->model('game_model');
+		$this->load->model('ElasticSearch');
 		
 		//Ouverture de la connection vers elastic
 		$params = array();
