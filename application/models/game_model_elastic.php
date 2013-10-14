@@ -1,6 +1,7 @@
 <?php  
 if (! defined('BASEPATH')) exit('No direct script access allowed');
- 
+require 'ElasticSearch.php';
+
 class Game_model_elastic extends CI_Model
 {
 	
@@ -10,6 +11,7 @@ class Game_model_elastic extends CI_Model
 	function __construct(){
         parent::__construct();
 		$this->load->model('game_model');
+		$this->load->model('ElasticSearch');
 		
 		//Ouverture de la connection vers elastic
 		$params = array();
@@ -58,7 +60,14 @@ class Game_model_elastic extends CI_Model
 		$params['body']=$json;
 		$results = $this->client->search($params);
 		
+		//print_r($results);
+		
+		$e = new ElasticSearch;
+		$results = $e->query($json);
+		
 		print_r($results);
+		
+		return($results);
 	}
 
 }
